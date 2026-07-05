@@ -1,11 +1,14 @@
 import React from 'react'
+import Profile from '../component/profile'
 
-const page = () => {
+const Profilepage = () => {
   return (
-    <div>
-      
-    </div>
+    <Profile/>
   )
 }
 
-export default page
+export default Profilepage
+
+export const metadata = {
+    title: "Dashboard - Get Me A Chai",
+  }

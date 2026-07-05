@@ -1,2 +1,11 @@
 @import "tailwindcss";
+.invertImg{
+    filter:invert(0.33)
+}
 
+/* Fix iframe scroll on mobile */
+@media (max-width: 768px) {
+  iframe {
+    pointer-events: none;
+  }
+}

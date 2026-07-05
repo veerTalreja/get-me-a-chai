@@ -1,7 +1,18 @@
-"use client"
+"use client";
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useEffect } from "react";
+import { useSession, signIn, signOut, } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const Login = () => {
+   const { data: session } = useSession();
+  const router = useRouter();  // always runs
+
+  useEffect(() => {
+    document.title ="Login - Get me a chai"
+    if (session) {
+      router.push("/profile"); // safe inside effect
+    }
+  }, [session, router]);
   return (
     <div className="text-white py-14">
       <h1 className="font-bold text-3xl text-center">
@@ -152,7 +163,12 @@ const Login = () => {
           <span>Continue with Facebook</span>
         </button>
 
-        <button onClick={()=>{signIn("github")}} className="flex items-center w-64 text-black bg-slate-50 border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+        <button
+          onClick={() => {
+            signIn("github");
+          }}
+          className="flex items-center w-64 text-black bg-slate-50 border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        >
           <svg
             className="h-6 w-6 mr-2"
             xmlns="http://www.w3.org/2000/svg"
